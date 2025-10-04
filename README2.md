@@ -59,25 +59,38 @@ gantt
     axisFormat  %m/%d
 
     section 規劃階段
-    研擬計畫(全員)           :done, a1, 2025-10-01, 5d
-    需求分析與文獻探討(全員) :done, a2, after a1, 7d
+    研擬計畫(全員)           :a1, 2025-10-01, 5d
+    需求分析與文獻探討(全員) :a2, after a1, 7d
 
-    section 後端(B-綠色)
-    系統功能與資料庫設計(B)   :crit, a3, after a2, 10d
-    後端架構建置(B)           :crit, a6, after a3, 15d
+    section 後端 (B)
+    系統功能與資料庫設計(B)   :a3, after a2, 10d
+    後端架構建置(B)           :a6, after a3, 15d
 
-    section 資料分析(C-橘色)
+    section 資料分析 (C)
     收集/清理旅遊數據(C)      :a4, after a2, 14d
     建立推薦模型(C)          :a7, after a4, 14d
 
-    section 前端(A-藍色)
+    section 前端 (A)
     前端雛型設計(A)          :a5, after a3, 12d
     Google Maps/AR串接(A,B)  :a8, after a5, 10d
 
-    section 測試與交付(全員)
+    section 測試與交付 (全員)
     系統整合與測試(全員)     :a9, after a6, 14d
     撰寫使用手冊(A)          :a10, after a9, 7d
     最終驗收與簡報(全員)     :a11, after a10, 5d
+
+    %% 定義顏色
+    classDef all fill:#FFD580,stroke:#333,stroke-width:1px
+    classDef A fill:#9FC5E8,stroke:#333,stroke-width:1px
+    classDef B fill:#93C47D,stroke:#333,stroke-width:1px
+    classDef C fill:#F6B26B,stroke:#333,stroke-width:1px
+
+    %% 指派顏色
+    class a1,a2,a9,a11 all
+    class a5,a8,a10 A
+    class a3,a6 B
+    class a4,a7 C
+
 ```
 
 
