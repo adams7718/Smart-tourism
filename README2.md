@@ -51,8 +51,7 @@ graph TD
 ```
 
 ---
-
-## 4. 甘特圖 (含成員分工顏色)
+## 4. 甘特圖 
 ```mermaid
 gantt
     title 智慧旅遊專題甘特圖
@@ -80,24 +79,8 @@ gantt
     撰寫使用手冊(A)          :a10, after a9, 7d
     最終驗收與簡報(全員)     :a11, after a10, 5d
 
-    %% 定義顏色
-    classDef all fill:#FFD580,stroke:#333,stroke-width:1px
-    classDef A fill:#9FC5E8,stroke:#333,stroke-width:1px
-    classDef B fill:#93C47D,stroke:#333,stroke-width:1px
-    classDef C fill:#F6B26B,stroke:#333,stroke-width:1px
-
-    %% 指派顏色
-    class a1,a2,a9,a11 all
-    class a5,a8,a10 A
-    class a3,a6 B
-    class a4,a7 C
 ```
 
 ---
 
-## 5. 關鍵路徑 (Critical Path)
-依據 WBS 與 PERT 計算，**關鍵路徑為：**  
-**1 → 2 → 3 → 6 → 9 → 10 → 11**  
-（總時長約 66 天，符合專案 10/1～12/21 的排程）
 
----
