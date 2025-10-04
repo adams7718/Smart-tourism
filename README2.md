@@ -48,9 +48,6 @@ graph TD
     9 --> 11[最終驗收與簡報]
     10 --> 11
 ```
-
----
-
 ## 4. 甘特圖 (含成員分工顏色)
 ```mermaid
 gantt
@@ -90,7 +87,6 @@ gantt
     class a5,a8,a10 A
     class a3,a6 B
     class a4,a7 C
-
 ```
 
 
