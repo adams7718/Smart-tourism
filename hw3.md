@@ -40,6 +40,7 @@
 - 程式碼需遵循統一的命名與版本控制規範（如 GitFlow）。
 - 每次版本更新需經過自動化測試（Unit Test / Integration Test）。
 
+## 三、功能分解圖(functional decomposition diagram, FDD)
 ```mermaid
 graph TD
 A[智慧旅遊系統] --> B1[會員模組]
