@@ -1,6 +1,6 @@
 ## HW3:智慧旅遊功能性需求與非功能性需求
 # 一、功能性需求 (Functional Requirements)
-1. 使用者帳號與會員管理 (User & Account Management)
+#　1. 使用者帳號與會員管理 (User & Account Management)
 
 系統必須允許使用者註冊帳號並登入（註冊 / 登入）。
 
@@ -10,7 +10,7 @@
 
 系統需區分一般使用者與管理者權限（權限管理）。
 
-2. 景點搜尋與收藏 (Attraction Search & Favorites)
+＃　2. 景點搜尋與收藏 (Attraction Search & Favorites)
 
 系統應提供搜尋功能，允許使用者以關鍵字查詢景點（搜尋景點）。
 
@@ -20,7 +20,7 @@
 
 系統應允許使用者從「我的收藏」移除景點。
 
-3. 行程規劃與建議 (Trip Planning & Recommendation)
+＃　3. 行程規劃與建議 (Trip Planning & Recommendation)
 
 系統必須允許使用者建立自訂旅遊行程（新增行程）。
 
@@ -30,7 +30,7 @@
 
 系統可根據天氣或交通狀況即時更新建議（動態調整）。
 
-4. 評價與社群互動 (Review & Social Interaction)
+＃　4. 評價與社群互動 (Review & Social Interaction)
 
 使用者可對景點進行評分與留言（撰寫評論）。
 
@@ -42,10 +42,7 @@
 
 # 二、非功能性需求 (Non-Functional Requirements)
 
-效能 (Performance)： 系統在查詢或載入景點時，平均反應時間不超過 3 秒。
-
-可用性 (Usability)： 平台操作介面需直覺、支援中英文切換。
-
-安全性 (Security)： 所有用戶密碼與資料必須經過加密儲存。
-
-可維護性 (Maintainability)： 系統架構應模組化，以便後續功能擴充與維護。
+# 效能 (Performance)： 系統在查詢或載入景點時，平均反應時間不超過 3 秒。
+# 可用性 (Usability)： 平台操作介面需直覺、支援中英文切換。
+# 安全性 (Security)： 所有用戶密碼與資料必須經過加密儲存。
+＃　可維護性 (Maintainability)： 系統架構應模組化，以便後續功能擴充與維護。
