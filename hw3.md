@@ -1,6 +1,6 @@
 # HW3:智慧旅遊功能性需求與非功能性需求
 ## 一、功能性需求 (Functional Requirements)
-###　1. 使用者帳號與會員管理 (User & Account Management)
+＊使用者帳號與會員管理 (User & Account Management)
 
 系統必須允許使用者註冊帳號並登入（註冊 / 登入）。
 
