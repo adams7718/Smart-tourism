@@ -67,20 +67,65 @@ B5 --> C11[資料維護]
 B5 --> C12[報表生成]
 ```
 ## 四、使用案例
-- 使用案例圖
+## 🎭 4. 使用案例圖（Use Case Diagram）
+
 ```mermaid
-graph TD
-User((使用者)) --> UC1[登入與註冊]
-User --> UC2[搜尋景點]
-User --> UC3[獲取旅遊推薦]
-User --> UC4[建立個人行程]
-User --> UC5[使用AR導覽]
-User --> UC6[收藏與評論]
+flowchart TD
+    %% 角色區
+    user([🧍 使用者<br>User]):::actor
+    admin([👩‍💻 管理者<br>Admin]):::actor
+    system([💡 智慧旅遊系統<br>Smart Travel System]):::system
 
-Admin((管理者)) --> UC7[管理景點資料]
-Admin --> UC8[維護使用者帳號]
+    %% 使用案例節點
+    subgraph USER_CASES[使用者功能 Use Cases]
+        UC1((🆕 註冊 / 登入帳號))
+        UC2((⚙️ 設定旅遊偏好))
+        UC3((📊 取得個人化推薦))
+        UC4((🗓️ 建立 / 編修行程))
+        UC5((🗺️ 地圖與路線導航))
+        UC6((⏰ 即時延誤調整))
+        UC7((💬 收藏 / 分享行程))
+        UC8((⭐ 景點留言與評分))
+        UC9((📣 發佈回饋 / 問卷))
+    end
 
+    subgraph ADMIN_CASES[管理者功能 Admin Cases]
+        UC10((🗂️ 管理景點資料))
+        UC11((📈 監控系統與熱門度分析))
+        UC12((🔐 權限與安全管理))
+    end
+
+    %% 角色連結
+    user --> UC1
+    user --> UC2
+    user --> UC3
+    user --> UC4
+    user --> UC5
+    user --> UC6
+    user --> UC7
+    user --> UC8
+    user --> UC9
+
+    admin --> UC10
+    admin --> UC11
+    admin --> UC12
+
+    %% 系統關聯（置中呈現）
+    UC3 --> system
+    UC4 --> system
+    UC5 --> system
+    UC6 --> system
+    UC10 --> system
+    UC11 --> system
+
+    %% 風格設定
+    classDef actor fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,font-weight:bold;
+    classDef system fill:#f1f8e9,stroke:#43a047,stroke-width:2px,font-weight:bold;
+    classDef usecase fill:#fff3e0,stroke:#fb8c00,stroke-width:1.5px,rx:25,ry:25;
+    class UC1,UC2,UC3,UC4,UC5,UC6,UC7,UC8,UC9,UC10,UC11,UC12 usecase;
 ```
+
+---
 - 使用案例說明
 
 | 欄位 | 內容 |
