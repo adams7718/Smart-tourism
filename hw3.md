@@ -67,8 +67,6 @@ B5 --> C11[資料維護]
 B5 --> C12[報表生成]
 ```
 ## 四、使用案例
-## 🎭 4. 使用案例圖（Use Case Diagram）
-
 ```mermaid
 flowchart TD
     %% 角色區
@@ -77,6 +75,7 @@ flowchart TD
     system([💡 智慧旅遊系統<br>Smart Travel System]):::system
 
     %% 使用案例節點
+    subgraph USER_CASES[ ]
         UC1((🆕 註冊 / 登入帳號))
         UC2((⚙️ 設定旅遊偏好))
         UC3((📊 取得個人化推薦))
@@ -88,6 +87,7 @@ flowchart TD
         UC9((📣 發佈回饋 / 問卷))
     end
 
+    subgraph ADMIN_CASES[ ]
         UC10((🗂️ 管理景點資料))
         UC11((📈 監控系統與熱門度分析))
         UC12((🔐 權限與安全管理))
@@ -122,8 +122,6 @@ flowchart TD
     classDef usecase fill:#fff3e0,stroke:#fb8c00,stroke-width:1.5px,rx:25,ry:25;
     class UC1,UC2,UC3,UC4,UC5,UC6,UC7,UC8,UC9,UC10,UC11,UC12 usecase;
 ```
-
----
 - 使用案例說明
 
 | 欄位 | 內容 |
