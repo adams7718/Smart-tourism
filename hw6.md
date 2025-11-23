@@ -80,8 +80,8 @@ B. 螢幕顯示欄位 (Output Fields)
 
 ---
 ## 圖 5：行程規劃頁 - 含警示 (Itinerary with Warning)
-![5](https://github.com/user-attachments/assets/a48dd52d-0d4d-44e2-962c-8bda2fc4b38d)
 
+![6](https://github.com/user-attachments/assets/99773fe0-184a-44f1-9593-cd64b0f73a38)
 A. 輸入欄位 (Input Fields)
 | 欄位名稱 | 資料型態 | 驗證規則 / 觸發行為 |
 | :--- | :--- | :--- |
@@ -100,7 +100,7 @@ B. 螢幕顯示欄位 (Output Fields)
 
 ---
 ## 圖 6：行程規劃頁 - 正常版 (Itinerary Clean View)
-![6](https://github.com/user-attachments/assets/99773fe0-184a-44f1-9593-cd64b0f73a38)
+![5](https://github.com/user-attachments/assets/a48dd52d-0d4d-44e2-962c-8bda2fc4b38d)
 
 
 A. 輸入欄位 (Input Fields)
