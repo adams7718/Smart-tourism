@@ -1,7 +1,7 @@
 # 分鏡板(storyboard) 
 
 ## 圖 1：首頁 (Landing Page)
-** A. 輸入欄位 (Input Fields)**
+**A. 輸入欄位 (Input Fields)**
 此頁面主要為導覽性質，輸入多為點擊動作 (Action)。
 | 欄位名稱 | 資料型態 | 驗證規則 / 觸發行為 |
 | :--- | :--- | :--- |
