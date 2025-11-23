@@ -1,7 +1,8 @@
 # 分鏡板(storyboard) 
 
 ## 圖 1：首頁 (Landing Page)
-![1](1.jpg)
+![1](https://github.com/user-attachments/assets/f7f936c5-2c2a-4568-8915-e739af21f6d0)
+
 A. 輸入欄位 (Input Fields)
 
 | 欄位名稱 | 資料型態 | 驗證規則 / 觸發行為 |
