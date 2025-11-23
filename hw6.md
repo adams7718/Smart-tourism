@@ -1,7 +1,7 @@
 # 分鏡板(storyboard) 
 
 ## 圖 1：首頁 (Landing Page)
-![Landing Page]("C:\Users\ASUS\Downloads\1.jpg")
+![Landing Page](1.jpg)
 A. 輸入欄位 (Input Fields)
 
 | 欄位名稱 | 資料型態 | 驗證規則 / 觸發行為 |
