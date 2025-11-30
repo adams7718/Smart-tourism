@@ -4,78 +4,71 @@
 
 ### 資料庫實體關係圖 (ER Diagram)
 
-```mermaid
 erDiagram
-    %% 1. 使用者與認證 (對應圖 1, 2, 3)
+    %% 1. 使用者與認證
     USER {
         int user_id PK
-        string email "UK, 必填, 登入帳號"
-        string password_hash "加密後的密碼"
-        string username "顯示名稱 (王小明)"
-        string oauth_provider "Google/FB (圖2)"
-        string oauth_uid "第三方ID"
+        string email
+        string password_hash
+        string username
+        string oauth_provider
+        string oauth_uid
         datetime created_at
     }
 
-    %% 2. AI 對話紀錄 (對應圖 4)
+    %% 2. AI 對話紀錄
     CHAT_SESSION {
         int session_id PK
         int user_id FK
-        string title "對話摘要"
+        string title
         datetime created_at
     }
 
     CHAT_MESSAGE {
         int message_id PK
         int session_id FK
-        string sender_type "User/AI"
-        text content "訊息內容"
+        string sender_type
+        text content
         datetime sent_at
     }
 
-    %% 3. 行程總表 (對應圖 3, 5, 6)
+    %% 3. 行程總表
     ITINERARY {
         int itinerary_id PK
         int user_id FK
-        string title "行程標題 (台南古蹟...)"
+        string title
         date start_date
         date end_date
-        string status "規劃中/已確認/警示中(圖6)"
+        string status
         datetime created_at
     }
 
-    %% 4. 行程細項 (對應圖 5, 6 的時間軸與卡片)
+    %% 4. 行程細項
     ITINERARY_ITEM {
         int item_id PK
         int itinerary_id FK
         int spot_id FK
-        int day_number "第幾天 (Day 1)"
-        time start_time "10:00"
+        int day_number
+        time start_time
         time end_time
-        string note "備註 (午餐/室內備案)"
-        boolean is_alternative "是否為備案 (圖6)"
+        string note
+        boolean is_alternative
     }
 
-    %% 5. 景點資料庫 (對應圖 5 的地圖與資訊)
+    %% 5. 景點資料庫
     SPOT {
         int spot_id PK
-        string name "景點名稱 (赤崁樓)"
+        string name
         string description
-        string tags "標籤 (AI, 古蹟, 室內)"
-        float location_lat "緯度 (Map Marker)"
-        float location_lng "經度 (Map Marker)"
+        string tags
+        float location_lat
+        float location_lng
         string image_url
     }
 
-    %% 關聯定義
-    USER ||--o{ CHAT_SESSION : "發起 (Initiates)"
-    CHAT_SESSION ||--o{ CHAT_MESSAGE : "包含 (Contains)"
-    USER ||--o{ ITINERARY : "擁有 (Owns)"
-    ITINERARY ||--|{ ITINERARY_ITEM : "由...組成 (Consists of)"
-    SPOT ||--o{ ITINERARY_ITEM : "被加入 (Is added to)"
-    %% 關聯定義
-    USER ||--o{ CHAT_SESSION : "發起 (Initiates)"
-    CHAT_SESSION ||--o{ CHAT_MESSAGE : "包含 (Contains)"
-    USER ||--o{ ITINERARY : "擁有 (Owns)"
-    ITINERARY ||--|{ ITINERARY_ITEM : "由...組成 (Consists of)"
-    SPOT ||--o{ ITINERARY_ITEM : "被加入 (Is added to)" (Contains)"
+    %% 關係定義 (修正語法錯誤)
+    USER ||--o{ CHAT_SESSION : "initiates"
+    CHAT_SESSION ||--o{ CHAT_MESSAGE : "contains"
+    USER ||--o{ ITINERARY : "owns"
+    ITINERARY ||--|{ ITINERARY_ITEM : "consists_of"
+    SPOT ||--o{ ITINERARY_ITEM : "is_added_to"
