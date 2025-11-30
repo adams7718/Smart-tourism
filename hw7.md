@@ -30,7 +30,7 @@ erDiagram
     ITINERARY {
         int itinerary_id PK "1"
         int user_id FK "12"
-        string title "行程標題 台北半日遊"
+        string title "行程標題 臺北一日遊"
         date start_date "12/31"
         date end_date "12/31"
         string status "規劃中/已確認/警示中(圖6)"
@@ -43,8 +43,8 @@ erDiagram
         int itinerary_id FK "1"
         int spot_id FK "1321"
         int day_number "第幾天 (Day 1)"
-        time start_time "13:00"
-        time end_time "22:00"
+        time start_time "09:00"
+        time end_time "23:00"
         string note "備註 (午餐/室內備案)"
         boolean is_alternative "是否為備案 (圖6)"
     }
