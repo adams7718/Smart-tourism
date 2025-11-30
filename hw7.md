@@ -1,3 +1,4 @@
+```mermaid
 erDiagram
     %% 1. 使用者與認證
     USER {
