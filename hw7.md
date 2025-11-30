@@ -1,13 +1,13 @@
 ```mermaid
 erDiagram
-    %% 1. 使用者與認證
+    %% 1. 使用者與認證 (對應圖 1, 2, 3)
     USER {
         int user_id PK
-        string email
-        string password_hash
-        string username
-        string oauth_provider
-        string oauth_uid
+        string email "UK, 必填, 登入帳號"
+        string password_hash "加密後的密碼"
+        string username "顯示名稱 (王小明)"
+        string oauth_provider "Google/FB (圖2)"
+        string oauth_uid "第三方ID"
         datetime created_at
     }
 
