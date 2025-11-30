@@ -6,9 +6,8 @@ erDiagram
         string email "UK, 必填, 登入帳號"
         string password_hash "加密後的密碼"
         string username "顯示名稱 (王小明)"
-        string oauth_provider "Google/FB (圖2)"
+        string oauth_provider "Google/FB"
         string oauth_uid "第三方ID"
-        datetime created_at
     }
 
    %% 2. AI 對話紀錄 (對應圖 4)
@@ -52,12 +51,13 @@ erDiagram
 
     %% 5. 景點資料庫 (對應圖 5 的地圖與資訊)
     SPOT {
-        int spot_id PK
-        string name "景點名稱 (赤崁樓)"
-        string description
-        string tags "標籤 (AI, 古蹟, 室內)"
-        float location_lat "緯度 (Map Marker)"
-        float location_lng "經度 (Map Marker)"
+        int id "1321"
+        string City "臺北市"
+        string District "信義區"
+        string ScenicSpotName PK "景點名稱 (台北101)"
+        string Address "臺北市信義區信義路五段7號"
+        string description " 台北101購物中心為地上5樓……"
+        string Class "標籤 (地標景觀類)"
         string image_url
     }
 
