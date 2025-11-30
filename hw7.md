@@ -1,9 +1,5 @@
 ## 工作項目：智慧旅遊實體關係圖 (ERD)
 
-**目標**：向使用者與開發團隊展示智慧旅遊系統內部的資料庫設計邏輯。
-**說明**：下圖描述了使用者 (User)、景點 (Attraction)、行程 (Itinerary) 與評論 (Review) 之間的關聯。
-
-### 資料庫實體關係圖 (ER Diagram)
 
 ```mermaid
 erDiagram
