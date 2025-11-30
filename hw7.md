@@ -1,5 +1,8 @@
-## 工作項目：智慧旅遊實體關係圖 (ERD)
+## 工作項目：基於 UI 流程的實體關係圖 (ERD) 設計
 
+**設計依據**：本資料庫設計係依據前述六張介面規劃圖（Landing Page, Login, Dashboard, Chat, Itinerary View）之輸入與輸出欄位進行正規化分析。
+
+### 資料庫實體關係圖 (ER Diagram)
 
 ```mermaid
 erDiagram
@@ -64,6 +67,12 @@ erDiagram
         string image_url
     }
 
+    %% 關聯定義
+    USER ||--o{ CHAT_SESSION : "發起 (Initiates)"
+    CHAT_SESSION ||--o{ CHAT_MESSAGE : "包含 (Contains)"
+    USER ||--o{ ITINERARY : "擁有 (Owns)"
+    ITINERARY ||--|{ ITINERARY_ITEM : "由...組成 (Consists of)"
+    SPOT ||--o{ ITINERARY_ITEM : "被加入 (Is added to)"
     %% 關聯定義
     USER ||--o{ CHAT_SESSION : "發起 (Initiates)"
     CHAT_SESSION ||--o{ CHAT_MESSAGE : "包含 (Contains)"
