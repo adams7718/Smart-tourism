@@ -1,9 +1,3 @@
-## 工作項目：基於 UI 流程的實體關係圖 (ERD) 設計
-
-**設計依據**：本資料庫設計係依據前述六張介面規劃圖（Landing Page, Login, Dashboard, Chat, Itinerary View）之輸入與輸出欄位進行正規化分析。
-
-### 資料庫實體關係圖 (ER Diagram)
-
 erDiagram
     %% 1. 使用者與認證
     USER {
