@@ -1,124 +1,149 @@
 # 分鏡板(storyboard) 
 
-## 圖 1：首頁 (Landing Page)
-![1](https://github.com/user-attachments/assets/f7f936c5-2c2a-4568-8915-e739af21f6d0)
+## 圖 1：首頁 
+![1](https://github.com/adams7718/Smart-tourism/blob/main/1.png)
 
 A. 輸入欄位 (Input Fields)
 | 欄位名稱 | 資料型態 | 驗證規則 / 觸發行為 |
 | :--- | :--- | :--- |
-| **登入 (按鈕)** | Action (動作) | 點擊後跳轉至登入頁面或彈出登入視窗。 |
-| **註冊 (按鈕)** | Action (動作) | 點擊後跳轉至註冊流程。 |
-| **立即開始規劃 (CTA 按鈕)** | Action (動作) | 點擊後驗證使用者是否登入：1. 若已登入：導向儀表板或對話頁。2. 若未登入：導向註冊/登入頁。|
+
 
 B. 螢幕顯示欄位 (Output Fields)
 | 欄位名稱 | 功能描述 |
 | :--- | :--- |
-| **網站 Logo (智慧旅遊)** | 品牌識別，點擊通常可返回首頁。 |
-| **導覽列 (Navbar)** | 顯示網站主要單元連結 (首頁、關於、新知識、媒體)。 |
-| **Hero 標題** | 顯示主要訴求文字「AI 驅動，您的專屬台灣旅程」。 |
-| **背景情境圖** | 營造旅遊氛圍的視覺圖片。 |
+
 
 ---
-## 圖 2：登入/註冊視窗 (Login Modal)
-![2](https://github.com/user-attachments/assets/c850affe-0d0e-4d9f-be31-2c4f928b606d)
+## 圖 2：註冊頁面 
+![2](https://github.com/adams7718/Smart-tourism/blob/main/2.png)
 
 A. 輸入欄位 (Input Fields)
-| 欄位名稱 | 資料型態 | 驗證規則 (Validation Rules) |
+| 欄位名稱 | 資料型態 | 驗證規則 / 觸發行為 |
 | :--- | :--- | :--- |
-| **分頁切換 (登入/註冊)** | Toggle (切換) | 切換目前顯示的表單模式。 |
-| **電子郵件** | String (字串) | 1. 必填。2. 格式驗證：須符合 Email 格式 (如 xxx@gmail.com)。3. 系統需檢查帳號是否存在。 |
-| **密碼** | String (字串) | 1. 必填。2. 遮蔽顯示 (type="password")。3. 最小長度限制 (例如 6 或 8 碼)。|
-| **登入 (按鈕)** | Action (動作) | 提交表單，若驗證失敗 (帳密錯誤) 需回傳錯誤訊息。 |
-| **Google 登入** | OAuth Action | 呼叫 Google API 進行第三方認證。 |
-| **Facebook 登入** | OAuth Action | 呼叫 Facebook API 進行第三方認證。 |
-| **忘記密碼** | Link (連結) | 點擊導向密碼重設流程。 |
 
 B. 螢幕顯示欄位 (Output Fields)
 | 欄位名稱 | 功能描述 |
 | :--- | :--- |
-| **視窗標題** | 標示當前狀態為「登入」或「註冊」。 |
-| **欄位標籤 (Label)** | 提示使用者該欄位用途 (電子郵件、密碼)。 |
-| **分隔線 (OR)** | 視覺區隔一般登入與第三方登入。 |
+
 
 ---
 
-## 圖 3：使用者儀表板 (Dashboard)
-![3](https://github.com/user-attachments/assets/45d64dfa-16a7-4bee-bf12-68481da2be56)
+## 圖 3：忘記密碼 
+![3](https://github.com/adams7718/Smart-tourism/blob/main/3.png)
 
 
 A. 輸入欄位 (Input Fields)
 | 欄位名稱 | 資料型態 | 驗證規則 / 觸發行為 |
 | :--- | :--- | :--- |
-| **建立第一個行程 (按鈕)** | Action (動作) |點擊後進入 AI 行程規劃流程。 |
-| **我的行程 (卡片)** | Link (連結) | 點擊進入行程列表頁。 |
-| **熱門推薦 (卡片)** | Link (連結) | 點擊進入該推薦文章或景點詳情頁。|
-| **使用者選單** | Action (動作) | 展開下拉選單。|
 
 B. 螢幕顯示欄位 (Output Fields)
 | 欄位名稱 | 功能描述 |
 | :--- | :--- |
-| **歡迎標題** | 顯示「早安，[使用者姓名]！」，根據時間動態改變問候語。 |
-| **我的行程區塊** | 顯示行程摘要圖示與引導文字。 |
-| **熱門推薦區塊** | 顯示推薦景點圖片、標題、簡短描述 (截斷文字顯示)。 |
+
 
 ---
-## 圖 4：AI 聊天室 (Chat Interface)
-![4](https://github.com/user-attachments/assets/44a26159-fed3-4eba-a336-78526dad5093)
+## 圖 4：重設密碼
+![4](https://github.com/adams7718/Smart-tourism/blob/main/4.png)
 
 A. 輸入欄位 (Input Fields)
-| 欄位名稱 | 資料型態 | 驗證規則 (Validation Rules) |
+| 欄位名稱 | 資料型態 | 驗證規則 / 觸發行為 |
 | :--- | :--- | :--- |
-| **輸入您的需求 (對話框)** | Text Area (長文字) | 1. 必填 (才可發送)。2. 允許輸入中文、英數符號。3. 建議設定最大字元數限制 (防止 Token 溢出)。4. XSS 惡意代碼過濾。 |
-| **發送按鈕 (紙飛機圖示)** | Action (動作) | 1. 僅在輸入框非空時啟用 (Enable)。2. 點擊後送出文字並清空輸入框。 |
-| **使用者選單 (右上角)** | Dropdown (選單) | 點擊顯示個人設定、登出等選項。|
 
 B. 螢幕顯示欄位 (Output Fields)
 | 欄位名稱 | 功能描述 |
 | :--- | :--- |
-| **使用者頭像/名稱** | 顯示當前登入者身分 (王小明)。 |
-| **AI 訊息氣泡** | 顯示系統/AI 回覆的內容 (包含歡迎詞、規劃結果描述)。 |
-| **使用者訊息氣泡** | 顯示使用者發送的歷史訊息 (藍色底)。 |
-| **預設引導文字** | (若輸入框為空) 顯示 placeholder 提示文字「輸入您的需求...」。 |
 
 ---
-## 圖 5：行程規劃頁 - 正常版 (Itinerary Clean View)
-![5](https://github.com/user-attachments/assets/a48dd52d-0d4d-44e2-962c-8bda2fc4b38d)
+## 圖 5：使用者介面
+![5](https://github.com/adams7718/Smart-tourism/blob/main/5.png)
 
 
 A. 輸入欄位 (Input Fields)
 | 欄位名稱 | 資料型態 | 驗證規則 / 觸發行為 |
 | :--- | :--- | :--- |
-| **保存 (按鈕)** | Action (動作) | 將目前行程寫入資料庫 UserItinerary Table。 |
-| **分享 (按鈕)** | Action (動作) | 產生分享連結或開啟社群分享視窗。 |
-| **地圖操作** | Action (動作) | 拖曳地圖、點擊地標、縮放地圖。|
+
 
 B. 螢幕顯示欄位 (Output Fields)
 | 欄位名稱 | 功能描述 |
 | :--- | :--- |
-| **頁面標題** | 顯示「AI 推薦行程：台南古蹟美食三日遊」。 |
-| **日期分組 (Day 1)** | 顯示該日主題 (如：古蹟巡禮與在地小吃)。 |
-| **時間軸** | 顯示每個節點的時間 (10:00, 12:00...)。 |
-| **景點卡片** | 顯示景點名稱 (赤崁樓)、Tag (AI, 大眾運輸便利)、圖示。 |
-| **地圖資訊** | 對應左側列表的視覺化地圖，包含編號標記與連線。 |
+
 
 ---
 
-## 圖 6：行程規劃頁 - 含警示 (Itinerary with Warning)
+## 圖 6：行程規劃頁(ai規劃行程)
 
-![6](https://github.com/user-attachments/assets/99773fe0-184a-44f1-9593-cd64b0f73a38)
+![7](https://github.com/adams7718/Smart-tourism/blob/main/6.png)
 A. 輸入欄位 (Input Fields)
 | 欄位名稱 | 資料型態 | 驗證規則 / 觸發行為 |
 | :--- | :--- | :--- |
-| **接受建議並調整 (按鈕)** | Action (動作) |(此頁面特有) 點擊後，系統自動替換受天氣影響的行程為室內備案。 |
-| **忽略 (按鈕)** | Action (動作) | (此頁面特有) 點擊後關閉黃色警示橫幅，不修改資料。 |
-| **地圖縮放 (+/-)** | Action (動作) | 控制地圖顯示比例。|
+
 
 B. 螢幕顯示欄位 (Output Fields)
 | 欄位名稱 | 功能描述 |
 | :--- | :--- |
-| **黃色警示橫幅** | (重點功能) 顯示天氣預警資訊 (如：降雨機率 90%) 及建議事項。 |
-| **行程標題** | 顯示 AI 生成的行程名稱。 |
-| **每日行程列表** | 包含時間、景點名稱、AI 標籤、備註 (如：午餐)。 |
-| **互動地圖** | 顯示路線軌跡 (Polyline) 與景點標記 (Marker 1, 2, 3...)。 |
+
+
+---
+
+---
+
+## 圖 7：ai輸出行程
+
+![7](https://github.com/adams7718/Smart-tourism/blob/main/7.png)
+A. 輸入欄位 (Input Fields)
+| 欄位名稱 | 資料型態 | 驗證規則 / 觸發行為 |
+| :--- | :--- | :--- |
+
+
+B. 螢幕顯示欄位 (Output Fields)
+| 欄位名稱 | 功能描述 |
+| :--- | :--- |
+
+
+---
+
+---
+
+## 圖 8：ai輸出行程
+
+![8](https://github.com/adams7718/Smart-tourism/blob/main/8.png)
+A. 輸入欄位 (Input Fields)
+| 欄位名稱 | 資料型態 | 驗證規則 / 觸發行為 |
+| :--- | :--- | :--- |
+
+
+B. 螢幕顯示欄位 (Output Fields)
+| 欄位名稱 | 功能描述 |
+| :--- | :--- |
+
+
+---
+
+## 圖 8：手動排序行程
+
+![8](https://github.com/adams7718/Smart-tourism/blob/main/8.png)
+A. 輸入欄位 (Input Fields)
+| 欄位名稱 | 資料型態 | 驗證規則 / 觸發行為 |
+| :--- | :--- | :--- |
+
+
+B. 螢幕顯示欄位 (Output Fields)
+| 欄位名稱 | 功能描述 |
+| :--- | :--- |
+
+
+---
+
+## 圖 9：直接帶入google map執行路線
+
+![9](https://github.com/adams7718/Smart-tourism/blob/main/9.png)
+A. 輸入欄位 (Input Fields)
+| 欄位名稱 | 資料型態 | 驗證規則 / 觸發行為 |
+| :--- | :--- | :--- |
+
+
+B. 螢幕顯示欄位 (Output Fields)
+| 欄位名稱 | 功能描述 |
+| :--- | :--- |
 
 ---
