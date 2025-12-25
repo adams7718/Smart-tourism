@@ -1,55 +1,77 @@
-# 台灣旅遊小幫手 - 實體關聯圖 (ERD) 與資料庫結構
+# 台灣旅遊小幫手 - 系統資料庫架構 (System Architecture)
 
-本文件描述了系統中各個資料檔案之間的關聯結構，包含使用者資料、行程歷史紀錄以及景點資料庫。
+本文件詳細描述系統的資料實體、屬性及其關聯性。圖表採用橫向佈局以利閱讀。
 
-## 實體關聯圖 (Entity Relationship Diagram)
+## 實體關聯圖 (Class Diagram Style ERD)
+
+> 註：採用 Class Diagram 語法以強制呈現橫向 (Left-to-Right) 排列，符合 GitHub Mermaid 渲染標準。
 
 ```mermaid
-erDiagram
-    %% 使用者資料庫 (users_db.json)
-    USER {
-        string email PK "使用者 Email (Key)"
-        string password "密碼"
-        string nickname "暱稱"
+classDiagram
+    direction LR
+
+    %% 使用者 (Users)
+    class USER {
+        <<Collection: users_db.json>>
+        +String email (PK)
+        +String password
+        +String nickname
     }
 
-    %% 行程歷史紀錄 (history_db.json - 外層)
-    TRIP {
-        string id PK "行程 ID"
-        string email FK "關聯使用者 Email"
-        string trip_name "行程名稱"
-        int days "天數"
-        string mode "規劃模式 (ai/manual)"
-        string timestamp "建立時間"
-        json data "行程明細列表 (Array)"
+    %% 行程紀錄 (Trip History)
+    class TRIP {
+        <<Collection: history_db.json>>
+        +String id (PK)
+        +String email (FK)
+        +String trip_name
+        +Int days
+        +String mode
+        +String timestamp
+        +List data
     }
 
-    %% 行程明細 (history_db.json - data 內部結構)
-    ITINERARY_ITEM {
-        int Day "第幾天"
-        int Order "當日順序"
-        string Place FK "景點名稱 (關聯 Attraction)"
-        string City "城市"
-        string District "行政區"
-        string Transport "交通方式"
-        string StayTime "停留時間 (Optional)"
+    %% 行程節點 (Itinerary Items)
+    class ITINERARY_ITEM {
+        <<Nested Object>>
+        +Int Day
+        +Int Order
+        +String Place (FK)
+        +String City
+        +String District
+        +String Transport
+        +String Date [Optional]
+        +String Temp [Optional]
+        +String Rain [Optional]
+        +String Note [Optional]
     }
 
-    %% 台灣景點資料 (taiwan_attractions.csv)
-    ATTRACTION {
-        string ID PK "景點編號"
-        string ScenicSpotName UK "景點名稱"
-        string City "縣市"
-        string District "行政區"
-        string Address "地址"
-        string Description "詳細介紹"
-        string OpenTime "開放時間"
-        string Class_1_2_3 "分類"
-        string Position "經緯度資訊 (JSON)"
-        string Picture "圖片資訊 (JSON)"
+    %% 景點資料 (Attractions)
+    class ATTRACTION {
+        <<Table: taiwan_attractions.csv>>
+        +Int ID (PK)
+        +String ScenicSpotName (UK)
+        +String City
+        +String District
+        +String Address
+        +String Description
+        +String OpenTime
+        +String Phone
+        +String TravelInfo
+        +String WebsiteUrl
+        +String Class1
+        +String Class2
+        +String Class3
+        +String Keyword
+        +String ParkingInfo
+        +JSON Position
+        +String Level
+        +JSON Picture
+        +String MapUrl
+        +String DescriptionDetail
+        +String IndoorOutdoor "室內室外分類"
     }
 
-    %% 關係定義
-    USER ||--o{ TRIP : "擁有 (Owns)"
-    TRIP ||--|{ ITINERARY_ITEM : "包含 (Contains)"
-    ITINERARY_ITEM }|..|| ATTRACTION : "參考 (Refers to)"
+    %% 關聯定義
+    USER "1" --> "*" TRIP : "Has History"
+    TRIP "1" *-- "*" ITINERARY_ITEM : "Contains"
+    ITINERARY_ITEM ..> ATTRACTION : "Refers to (by Name)"
