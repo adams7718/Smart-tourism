@@ -1,8 +1,5 @@
-# 台灣旅遊小幫手 - 實體關聯圖 (ERD) 與資料庫結構
-
-本文件描述了系統中各個資料檔案之間的關聯結構，包含使用者資料、行程歷史紀錄以及景點資料庫。
-
 ## 實體關聯圖 (Entity Relationship Diagram)
+
 ```mermaid
 erDiagram
     direction LR
@@ -53,3 +50,76 @@ erDiagram
     USER ||--o{ TRIP : "擁有 (Owns)"
     TRIP ||--|{ ITINERARY_ITEM : "包含 (Contains)"
     ITINERARY_ITEM }|..|| ATTRACTION : "參考 (Refers to)"
+
+---
+
+### 2. 系統架構圖 (System Architecture) - 複製此段
+
+```markdown
+## 🏗️ 系統架構圖 (System Architecture)
+
+```mermaid
+graph TD
+    %% 定義樣式
+    classDef user fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef ui fill:#e1f5fe,stroke:#0277bd,stroke-width:2px;
+    classDef logic fill:#fff9c4,stroke:#fbc02d,stroke-width:2px;
+    classDef db fill:#e0e0e0,stroke:#616161,stroke-width:2px;
+    classDef api fill:#ffe0b2,stroke:#f57c00,stroke-width:2px;
+
+    %% 節點定義
+    User((使用者)):::user
+    
+    subgraph Streamlit_App [Streamlit Application (b.py)]
+        UI[💻 前端介面 UI]:::ui
+        Auth[🔐 認證模組<br/>Login/Signup]:::logic
+        Session[💾 Session State<br/>狀態管理]:::logic
+        
+        subgraph Core_Features [核心功能]
+            AI_Planner[🤖 AI 行程規劃<br/>Gemini Pro]:::logic
+            Manual_Planner[🗺️ 手動規劃<br/>資料庫搜尋]:::logic
+            Weather_Mod[☁️ 天氣預報 &<br/>穿搭建議]:::logic
+        end
+        
+        Output[📊 輸出呈現<br/>HTML卡片/圖表/文字檔]:::ui
+    end
+
+    subgraph Data_Storage [本地資料存儲]
+        CSV[(taiwan_attractions.csv<br/>景點資料庫)]:::db
+        UserDB[(users_db.json<br/>使用者資料)]:::db
+        HistDB[(history_db.json<br/>行程歷史)]:::db
+    end
+
+    subgraph External_Services [外部 API 服務]
+        GeminiAPI[✨ Google Gemini API<br/>LLM 生成]:::api
+        OpenMeteo[☔ Open-Meteo API<br/>天氣資訊]:::api
+        GoogleMaps[📍 Google Maps<br/>導航連結]:::api
+    end
+
+    %% 關係連線
+    User -->|登入/註冊| Auth
+    User -->|輸入需求/操作| UI
+    UI --> Session
+    
+    Auth <-->|讀寫| UserDB
+    
+    UI -->|AI 模式| AI_Planner
+    UI -->|手動模式| Manual_Planner
+    UI -->|查看紀錄| HistDB
+    
+    AI_Planner -->|Prompt| GeminiAPI
+    AI_Planner -->|查詢| CSV
+    Manual_Planner -->|查詢| CSV
+    
+    AI_Planner -->|儲存結果| HistDB
+    Manual_Planner -->|儲存結果| HistDB
+    
+    AI_Planner --> Weather_Mod
+    Manual_Planner --> Weather_Mod
+    Weather_Mod -->|查詢經緯度| OpenMeteo
+    
+    Weather_Mod --> Output
+    AI_Planner --> Output
+    Manual_Planner --> Output
+    
+    Output -->|生成連結| GoogleMaps
