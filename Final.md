@@ -61,7 +61,7 @@ erDiagram
 graph TD
     User["使用者瀏覽器"] <-->|HTTP/WebSocket| Server["Streamlit 伺服器 (Python)"]
     
-    subgraph App ["Streamlit 應用程式 (travel.py)"]
+    subgraph App ["Streamlit 應用程式(trip.py)"]
         direction TB
         UI["UI 渲染與路由 (Presentation)"]
         Logic["業務邏輯與狀態管理 (Logic)"]
