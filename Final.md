@@ -82,69 +82,101 @@ graph TD
 
 ## 3. 網頁架構圖 
 ```mermaid
-graph TD
-    %% 定義樣式
-    classDef user fill:#f9f,stroke:#333,stroke-width:2px;
-    classDef ui fill:#e1f5fe,stroke:#0277bd,stroke-width:2px;
-    classDef logic fill:#fff9c4,stroke:#fbc02d,stroke-width:2px;
-    classDef db fill:#e0e0e0,stroke:#616161,stroke-width:2px;
-    classDef api fill:#ffe0b2,stroke:#f57c00,stroke-width:2px;
+graph LR
+    %% 設定為由左至右 (LR)，這是最能減少交錯的佈局
+    %% 使用 basis 曲線讓線條平滑
+    %% 【修改處】新增 themeVariables 來放大連線文字字體 (fontSize: 22px)
+    %%{init: {'flowchart': {'curve': 'basis', 'rankSpacing': 80, 'nodeSpacing': 20}, 'themeVariables': {'fontSize': '22px'}}}%%
 
-    %% 節點定義
+    %% --- 樣式設定 (保留您喜歡的大字體與高對比色) ---
+    classDef user fill:#ff80ab,stroke:#880e4f,stroke-width:4px,color:#000,font-size:24px,font-weight:bold;
+    classDef ui fill:#81d4fa,stroke:#01579b,stroke-width:3px,color:#000,font-size:22px,font-weight:bold;
+    classDef logic fill:#fff59d,stroke:#f9a825,stroke-width:3px,color:#000,font-size:22px,font-weight:bold;
+    classDef db fill:#e0e0e0,stroke:#424242,stroke-width:3px,color:#000,font-size:22px,font-weight:bold;
+    classDef api fill:#ffcc80,stroke:#ef6c00,stroke-width:3px,color:#000,font-size:22px,font-weight:bold;
+
+    %% --- 節點佈局 (由左至右) ---
+
+    %% 1. 最左側：使用者
     User((使用者)):::user
-    
+
+    %% 2. 中間：應用程式 (分為上、中、下三層以對齊右側資源)
     subgraph Streamlit_App [Streamlit Application]
-        UI[💻 前端介面 UI]:::ui
-        Auth[🔐 認證模組<br/>Login/Signup]:::logic
-        Session[💾 Session State<br/>狀態管理]:::logic
+        direction TB
         
-        subgraph Core_Features [核心功能]
-            AI_Planner[🤖 AI 行程規劃<br/>Gemini Pro]:::logic
-            Manual_Planner[🗺️ 手動規劃<br/>資料庫搜尋]:::logic
-            Weather_Mod[☁️ 天氣預報 &<br/>穿搭建議]:::logic
+        %% 上層：認證
+        subgraph Top_Layer [ ]
+            direction TB
+            Auth[🔐 認證模組]:::logic
+            Session[💾 Session State]:::logic
         end
         
-        Output[📊 輸出呈現<br/>HTML卡片/圖表/文字檔]:::ui
+        %% 中層：核心操作
+        subgraph Middle_Layer [ ]
+            direction TB
+            UI[💻 前端介面 UI]:::ui
+            AI_Planner[🤖 AI 行程規劃]:::logic
+            Manual_Planner[🗺️ 手動規劃]:::logic
+        end
+
+        %% 下層：輸出處理
+        subgraph Bottom_Layer [ ]
+            direction TB
+            Weather_Mod[☁️ 天氣預報]:::logic
+            Output[📊 輸出呈現]:::ui
+        end
     end
 
-    subgraph Data_Storage [本地資料存儲]
-        CSV[(taiwan_attractions.csv<br/>景點資料庫)]:::db
-        UserDB[(users_db.json<br/>使用者資料)]:::db
-        HistDB[(history_db.json<br/>行程歷史)]:::db
+    %% 3. 最右側：資源 (資料庫與API混合排列，只為了對齊線條)
+    subgraph Resources [後端資源與 API]
+        direction TB
+        
+        %% 上層資源 (對應 Auth)
+        UserDB[(User DB)]:::db
+        
+        %% 中層資源 (對應 Planner)
+        GeminiAPI[✨ Gemini API]:::api
+        CSV[(景點 CSV)]:::db
+        HistDB[(History DB)]:::db
+        
+        %% 下層資源 (對應 Weather/Output)
+        OpenMeteo[☔ Weather API]:::api
+        GoogleMaps[📍 Google Maps]:::api
     end
 
-    subgraph External_Services [外部 API 服務]
-        GeminiAPI[✨ Google Gemini API<br/>LLM 生成]:::api
-        OpenMeteo[☔ Open-Meteo API<br/>天氣資訊]:::api
-        GoogleMaps[📍 Google Maps<br/>導航連結]:::api
-    end
+    %% --- 連線關係 (由上而下順序定義，確保平行) ---
 
-    %% 關係連線
-    User -->|登入/註冊| Auth
-    User -->|輸入需求/操作| UI
-    UI --> Session
-    
-    Auth <-->|讀寫| UserDB
-    
-    UI -->|AI 模式| AI_Planner
-    UI -->|手動模式| Manual_Planner
-    UI -->|查看紀錄| HistDB
-    
-    AI_Planner -->|Prompt| GeminiAPI
-    AI_Planner -->|查詢| CSV
-    Manual_Planner -->|查詢| CSV
-    
-    AI_Planner -->|儲存結果| HistDB
-    Manual_Planner -->|儲存結果| HistDB
-    
-    AI_Planner --> Weather_Mod
-    Manual_Planner --> Weather_Mod
-    Weather_Mod -->|查詢經緯度| OpenMeteo
-    
-    Weather_Mod --> Output
-    AI_Planner --> Output
-    Manual_Planner --> Output
-    
-    Output -->|生成連結| GoogleMaps
+    %% 上層連線 (Login Flow)
+    User ==> Auth
+    Auth <==> UserDB
+    UI -.->|狀態| Session
 
+    %% 中層連線 (Core Flow)
+    User ==> UI
+    UI ==> AI_Planner
+    UI ==> Manual_Planner
+    
+    %% 核心邏輯對接右側資源 (盡量平行)
+    AI_Planner ==>|提示詞| GeminiAPI
+    AI_Planner ==>|檢索| CSV
+    Manual_Planner ==>|搜尋| CSV
+    AI_Planner ==>|儲存| HistDB
+    
+    %% 下層連線 (Output Flow)
+    AI_Planner ==> Weather_Mod
+    Manual_Planner ==> Weather_Mod
+    
+    Weather_Mod ==>|查詢資料| OpenMeteo
+    Weather_Mod ==> Output
+    
+    Output ==>|生成連結| GoogleMaps
+
+    %% 補充連線 (跨層級)
+    UI ==>|歷史紀錄| HistDB
+    Manual_Planner ==> Output
+
+    %% 全域連線樣式：黑色、加粗(4px)
+    %% 注意：原本您的代碼是 stroke:#FFF (白色)，在白底會看不見。
+    %% 若您是深色背景請維持 #FFF，若在白底請改為 #000。
+    linkStyle default stroke:#FFF,stroke-width:4px;
 ```
