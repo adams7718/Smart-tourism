@@ -56,7 +56,31 @@ erDiagram
     TRIP ||--|{ ITINERARY_ITEM : "包含 (Contains)"
     ITINERARY_ITEM }|..|| ATTRACTION : "參考 (Refers to)"
 ```
-## 2. 網頁架構圖 
+## 2. 資料流向
+```mermaid
+graph TD
+    User["使用者瀏覽器"] <-->|HTTP/WebSocket| Server["Streamlit 伺服器 (Python)"]
+    
+    subgraph App ["Streamlit 應用程式 (travel.py)"]
+        direction TB
+        UI["UI 渲染與路由 (Presentation)"]
+        Logic["業務邏輯與狀態管理 (Logic)"]
+        Data["檔案讀寫模組 (Data)"]
+    end
+    
+    Server --- UI
+    UI --- Logic
+    Logic --- Data
+    
+    Logic <-->|"API Request"| Gemini["Google Gemini AI"]
+    Logic <-->|"API Request"| Meteo["Open-Meteo 天氣"]
+    
+    Data <-->|"Read/Write"| JSON["JSON 資料庫 (Users/History)"]
+    Data <-->|"Read Only"| CSV["CSV 景點資料 (Attractions)"]
+```
+
+
+## 3. 網頁架構圖 
 ```mermaid
 graph TD
     %% 定義樣式
@@ -122,3 +146,5 @@ graph TD
     Manual_Planner --> Output
     
     Output -->|生成連結| GoogleMaps
+
+```
